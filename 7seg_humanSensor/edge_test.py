@@ -12,18 +12,18 @@ print("START\n")
 
 # メイン処理(人感センサー制御)
 try:
-    check = 1
+    check = 0
+    prev_sensor = 0
     while True:
-        count = 1
-        prev_sensor = (GPIO.input(hs_pin) - 1)
         current_sensor = GPIO.input(hs_pin)
-        if ((prev_sensor == 0) and (current_sensor == 1)):
+        if (prev_sensor == 0) and (current_sensor == 1):
             check = check + 1
             print(str(check)+"人発見しました")
             time.sleep(0.1)
-        # else:
-        #     print(GPIO.input(hs_pin))
-        #     time.sleep(1)
+        else:
+            print(GPIO.input(hs_pin))
+            time.sleep(1)
+        prev_sensor = current_sensor
 
 except KeyboardInterrupt:
     pass

@@ -26,18 +26,22 @@ def write_7seg(seg_pin,seg_number):
 
 # メイン処理(人感センサー制御)
 try:
+    check = 0
     num = 1
-    count = 1
+    prev_sensor = 0
     while True:
-        if(GPIO.input(hs_pin) == GPIO.HIGH):
-            print(str(count) + "人発見しました")
-            count = count + 1
+        current_sensor = GPIO.input(hs_pin)
+        if (prev_sensor == 0) and (current_sensor == 1):
+            check = check + 1
+            print(str(check)+"人発見しました")
             write_7seg(seg_pin, num)
-            time.sleep(20)
+            time.sleep(0.1)
             num = num + 1
         else:
             print(GPIO.input(hs_pin))
-            time.sleep(1)
+            time.sleep(0.1)
+        prev_sensor = current_sensor
+
 except KeyboardInterrupt:
     pass
 finally:
