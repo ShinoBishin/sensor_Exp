@@ -39,7 +39,7 @@ try:
             num = num + 1
         else:
             print(GPIO.input(hs_pin))
-            time.sleep(0.1)
+            time.sleep(1)
         prev_sensor = current_sensor
 
 except KeyboardInterrupt:
