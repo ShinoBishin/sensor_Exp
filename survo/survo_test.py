@@ -14,12 +14,12 @@ for i in range(96):
     x = (i/10)+2.5
     print("x = ", x)
     servo.ChangeDutyCycle(x)
-    time.sleep(0.5)
+    time.sleep(0.3)
 
     y = 12 - (i/10)
     print("y = ", y)
     servo.ChangeDutyCycle(y)
-    time.sleep(0.5)
+    time.sleep(0.3)
 
 servo.stop()
 GPIO.cleanup()
